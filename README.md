@@ -1,3 +1,3 @@
 # hitandreny
 
-A Javascript learning project
+A Javascript learning project intented to integrate TDD 
