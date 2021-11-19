@@ -70,8 +70,24 @@ body {
     background-color: whitesmoke;
     position: relative;
     z-index: 22;
-    grid-area: 1 / 1 / 2 / 3;
+    grid-area: 2 / 1 / 3 / span 3;
     margin-bottom: 0.5rem;
+}
+
+.icons {
+    grid-area: 1 / 1 / span 1 / span 3;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.fas {
+    cursor: pointer;
+    color: white;
+}
+
+.fa-pause{
+    margin-left: 2rem;
+    margin-right: 2rem;
 }
 
 .move {
@@ -81,12 +97,12 @@ body {
 
 .start {
     color: white;
-    grid-area: 2 / 1 / 3 / 2;
+    grid-area: 3 / 1 / 4 / span 1;
 }
 
 .end {
     color: white;
-    grid-area: 2 / 2 / 3 / 3;
+    grid-area: 3 / 3 / 4 / span 1;
     text-align: right;
 }
 

@@ -1,6 +1,11 @@
 const body = document.querySelector('body');
 const container = document.querySelector('.container');
 const audio = document.getElementsByTagName('audio')[0];
+
+const playIcon = document.querySelector('.fa-play');
+const pauseIcon = document.querySelector('.fa-pause');
+const stopIcon = document.querySelector('.fa-stop');
+
 const timeEnd = document.querySelector('.time.end');
 const progressBar = document.querySelector('.time.progress.move');
 
@@ -13,12 +18,22 @@ body.style.backgroundImage = `url(./assets/images/${imagesNamesArray[index]})`;
 body.style.backgroundSize = "cover";
 body.style.backgroundRepeat = "no-repeat"
 
-const playAudio = (audio) => {
+const playAudio = (audio, progress, color) => {
     audio.play();
+    progress.style.backgroundColor = `${color}`;
+};
+
+const pauseAudio = (audio, progress, color) => {
+    audio.pause();
+    progress.style.backgroundColor = `${color}`;
+};
+
+const stopAudio = (audio) => {
+    audio.pause();
+    audio.currentTime = 0;
 };
 
 const getAudioDuration = (audio) => {
-    console.log(audio.duration);
     return Math.round(audio.duration);
 }; 
 
@@ -44,7 +59,6 @@ const getProgressBarPercentage = (audio, audioLength) => {
     return Math.round(100 *  audio.currentTime / audioLength);
 };
 
-playAudio(audio);
 
 setTimeout(() => {
 
@@ -78,7 +92,11 @@ setTimeout(() => {
 
 }, 3000);
 
+playIcon.addEventListener('click', playAudio(audio, progressBar, "green"));
 
+pauseIcon.addEventListener('click', pauseAudio(audio, progressBar, "orange"));
+
+stopIcon.addEventListener('click', stopAudio(audio));
 
 
 
