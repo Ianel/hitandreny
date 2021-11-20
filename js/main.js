@@ -2,9 +2,9 @@ const body = document.querySelector('body');
 const container = document.querySelector('.container');
 const audio = document.querySelector('audio');
 
-const playIcon = document.querySelector('.icons .fa-play');
-const pauseIcon = document.querySelector('.icons .fa-pause');
-const stopIcon = document.querySelector('.icons .fa-stop');
+const playIcon = document.querySelector('.btn-play');
+const pauseIcon = document.querySelector('.btn-pause');
+const stopIcon = document.querySelector('.btn-stop');
 
 const timeEnd = document.querySelector('.time.end');
 const progressBar = document.querySelector('.time.progress.move');
@@ -104,12 +104,13 @@ setTimeout(() => {
 
 }, 3000);
 
-playIcon.addEventListener('click', () => {
+playIcon.onclick = () => {
     playAudio(audio, progressBar, "green");
     playIcon.style.color = "green";
     pauseIcon.style.color = "white";
-    stopIcon.style.color = "white";
-}); 
+    stopIcon.style.color = "white"; 
+    console.log('clicked');
+}; 
 
 pauseIcon.addEventListener('click', () => {
     pauseAudio(audio, progressBar, "orange");

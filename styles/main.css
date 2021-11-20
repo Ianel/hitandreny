@@ -76,19 +76,22 @@ body {
     border-radius: 0.5rem;
 }
 
-/* .icons {
+.btn-play, .btn-pause, .btn-stop {
+    border: none;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    font-size: 24px;
+    margin: 0rem 0.5rem;
+}
+
+.icons {
     grid-area: 1 / 1 / span 1 / span 3;
     text-align: center;
     margin-bottom: 1rem; 
     color: white;
     position: relative;
     z-index: 100;
-    cursor: pointer;
-} */
-
-.fa-pause{
-    margin-left: 2rem;
-    margin-right: 2rem;
 }
 
 .move {
