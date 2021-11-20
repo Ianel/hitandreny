@@ -76,18 +76,15 @@ body {
     border-radius: 0.5rem;
 }
 
-.icons {
+/* .icons {
     grid-area: 1 / 1 / span 1 / span 3;
     text-align: center;
     margin-bottom: 1rem; 
     color: white;
     position: relative;
     z-index: 100;
-}
-
-.fas {
-    padding: 20px;
-}
+    cursor: pointer;
+} */
 
 .fa-pause{
     margin-left: 2rem;

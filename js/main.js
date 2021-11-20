@@ -1,44 +1,42 @@
-let body = document.querySelector('body');
-let container = document.querySelector('.container');
-let audio = document.querySelector('audio');
+const body = document.querySelector('body');
+const container = document.querySelector('.container');
+const audio = document.querySelector('audio');
 
-let playIcon = document.querySelector('i.fa-play');
-let pauseIcon = document.querySelector('i.fa-pause');
-let stopIcon = document.querySelector('i.fa-stop');
+const playIcon = document.querySelector('.icons .fa-play');
+const pauseIcon = document.querySelector('.icons .fa-pause');
+const stopIcon = document.querySelector('.icons .fa-stop');
 
-let timeEnd = document.querySelector('.time.end');
-let progressBar = document.querySelector('.time.progress.move');
+const timeEnd = document.querySelector('.time.end');
+const progressBar = document.querySelector('.time.progress.move');
 
-let imagesNamesArray = ['01.png', '02.png', '03.png', '04.jpg', '05.jpg', '06.jpg'];
-let imagesNamesArrayLength = imagesNamesArray.length;
+const imagesNamesArray = ['01.png', '02.png', '03.png', '04.jpg', '05.jpg', '06.jpg'];
+const imagesNamesArrayLength = imagesNamesArray.length;
 
 let index = 0;
 
 body.style.backgroundImage = `url(./assets/images/${imagesNamesArray[index]})`;
 body.style.backgroundSize = "cover";
-body.style.backgroundRepeat = "no-repeat"
+body.style.backgroundRepeat = "no-repeat";
 
-let playAudio = (audio, progress, color) => {
+const playAudio = (audio, progress, color) => {
     try {
         audio.play();
     } catch(error) {
         console.error(error);
     }
-    this.style.color = `${color}`;
     progress.style.backgroundColor = `${color}`;
 };
 
-let pauseAudio = (audio, progress, color) => {
+const pauseAudio = (audio, progress, color) => {
     try {
         audio.pause();
     } catch (err) {
         console.error(error);
     }
-    this.style.color = `${color}`;
     progress.style.backgroundColor = `${color}`;
 };
 
-let stopAudio = (audio) => {
+const stopAudio = (audio) => {
     try {
         audio.pause();
         audio.currentTime = 0;
@@ -47,45 +45,45 @@ let stopAudio = (audio) => {
     }
 };
 
-let getAudioDuration = (audio) => {
+const getAudioDuration = (audio) => {
     return Math.round(audio.duration);
 }; 
 
-let stopAnimation = (animatedObject) => {
+const stopAnimation = (animatedObject) => {
     animatedObject.style.animationIterationCount = 0;
 };
 
-let stopImageCarousel = (htmlNode) => {
+const stopImageCarousel = (htmlNode) => {
     htmlNode.style.backgroundImage = `url(./assets/images/${imagesNamesArray[0]})`;
     htmlNode.style.backgroundSize = "cover";
     htmlNode.style.backgroundRepeat = "no-repeat";
 };
 
-let convertSecondsInMinutes = (durationInSeconds) => {
+const convertSecondsInMinutes = (durationInSeconds) => {
     return Math.floor(durationInSeconds / 60);
 };
 
-let convertSecondsInMinutesAndSeconds = (durationInSeconds, minutes) => {
+const convertSecondsInMinutesAndSeconds = (durationInSeconds, minutes) => {
     return durationInSeconds - minutes * 60;
 };
 
-let getProgressBarPercentage = (audio, audioLength) => {
+const getProgressBarPercentage = (audio, audioLength) => {
     return Math.round(100 *  audio.currentTime / audioLength);
 };
 
 
 setTimeout(() => {
 
-    let audioDuration = getAudioDuration(audio);
-    let TIME_BETWEEN_IMAGE_CHANGE = Math.round(audioDuration / imagesNamesArrayLength) * 1000;
+    const audioDuration = getAudioDuration(audio);
+    const TIME_BETWEEN_IMAGE_CHANGE = Math.round(audioDuration / imagesNamesArrayLength) * 1000;
 
-    let minutes = convertSecondsInMinutes(audioDuration);
-    let seconds = convertSecondsInMinutesAndSeconds(audioDuration, minutes);
+    const minutes = convertSecondsInMinutes(audioDuration);
+    const seconds = convertSecondsInMinutesAndSeconds(audioDuration, minutes);
 
     timeEnd.innerHTML = `${minutes} : ${seconds}`;
 
     setInterval(() => {
-        let progression = getProgressBarPercentage(audio, audioDuration);
+        const progression = getProgressBarPercentage(audio, audioDuration);
         progressBar.style.width = `${progression}%`;
     }, 1000);
 
@@ -102,12 +100,13 @@ setTimeout(() => {
     setTimeout(() => {
         stopAnimation(container);
         stopImageCarousel(body);
-    }, audioDuration * 1000 - 3000);
+    }, audioDuration * 1000 - 3000);    
 
 }, 3000);
 
 playIcon.addEventListener('click', () => {
     playAudio(audio, progressBar, "green");
+    playIcon.style.color = "green";
     pauseIcon.style.color = "white";
     stopIcon.style.color = "white";
 }); 
@@ -115,6 +114,7 @@ playIcon.addEventListener('click', () => {
 pauseIcon.addEventListener('click', () => {
     pauseAudio(audio, progressBar, "orange");
     playIcon.style.color = "white";
+    pauseIcon.style.color = "orange";
     stopIcon.style.color = "white";
 });
 
@@ -122,7 +122,5 @@ stopIcon.addEventListener('click', () => {
     stopAudio(audio);
     playIcon.style.color = "white";
     pauseIcon.style.color = "white";
+    stopIcon.style.color = "red";
 });
-
-
-
